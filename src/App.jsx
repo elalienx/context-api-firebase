@@ -14,7 +14,14 @@ export default function App() {
 
   useEffect(() => {
     console.log("App.jsx useEffect() candidates", candidates);
-  }, []);
+
+    setTimeout(() => {
+      console.log(
+        "App.jsx useEffect() setTimeout() candidates",
+        candidates.then((result) => console.log("result", result))
+      );
+    }, 1000);
+  }, [candidates]);
 
   return (
     <div className="App">

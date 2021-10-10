@@ -1,41 +1,12 @@
 // NPM packages
-import {
-  collection,
-  getDocs,
-  addDoc,
-  doc,
-  deleteDoc,
-  updateDoc,
-} from "firebase/firestore/lite";
+import { collection, getDocs } from "firebase/firestore/lite";
 
-// Create doc with auto id
-export async function createDoc(db, path, data) {
-  const collectionReference = collection(db, path);
-
-  await addDoc(collectionReference, data);
-}
-
-// Read documents
-export async function getCollection(db, path) {
-  const collectionReference = collection(db, path);
-  const snapshot = await getDocs(collectionReference);
+export async function getCollection(database, path) {
+  const collectionReference = collection(database, path); // code that runs locally from the SDK
+  const snapshot = await getDocs(collectionReference); // code that calls the server (delay)
   const list = snapshot.docs.map((doc) => {
     return { id: doc.id, ...doc.data() };
   });
 
   return list;
-}
-
-// Update file
-export async function updateDocument(db, path, id, data) {
-  const docReference = doc(db, path, id);
-
-  await updateDoc(docReference, data);
-}
-
-// Delete file
-export async function deleteDocument(db, path, id) {
-  const docReference = doc(db, path, id);
-
-  await deleteDoc(docReference);
 }
