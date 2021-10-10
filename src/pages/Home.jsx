@@ -1,4 +1,10 @@
+// Project files
+import { useCandidates } from "../state/CandidateProvider";
+
 export default function Home() {
+  // Global state
+  const { candidates } = useCandidates();
+
   // Components
   const CandidateItems = candidates.map((item) => (
     <li key={item.id}>
@@ -7,7 +13,7 @@ export default function Home() {
       <b>Age:</b>
       {item.age}
       <b>Is willing to relocate?:</b>
-      {item.willingToRelocate}
+      {item.willingToRelocate ? "Yes" : "No"}
     </li>
   ));
 
