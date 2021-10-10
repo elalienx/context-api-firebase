@@ -18,7 +18,7 @@ const CandidateContext = createContext(null);
 export function CandidateProvider({ children }) {
   // Local state
   const [candidates, dispatch] = useReducer(candidateReducer, []);
-  const [status, setStatus] = useState(0);
+  const [status, setStatus] = useState(0); // 0 loading, 1 loaded, 2 error
 
   // Properties
   const PATH = "candidates";
@@ -27,14 +27,12 @@ export function CandidateProvider({ children }) {
   const fetchData = useCallback(async (path) => {
     try {
       const candidates = await getCollection(path);
+      console.log("candidates", candidates);
 
-      if (candidates.length === 0) setStatus(1);
-      if (candidates.length > 0) {
-        dispatch({ type: "SET_CANDIDATES", payload: candidates });
-        setStatus(2);
-      }
+      dispatch({ type: "SET_CANDIDATES", payload: candidates });
+      setStatus(1);
     } catch {
-      setStatus(3);
+      setStatus(2);
     }
   }, []);
 
