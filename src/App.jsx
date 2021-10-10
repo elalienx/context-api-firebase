@@ -10,11 +10,10 @@ import { useEffect } from "react";
 
 export default function App() {
   // Global state
-  const { candidates, dispatch } = useCandidate();
+  const { candidates } = useCandidate();
 
   useEffect(() => {
-    dispatch({ type: "READ_FILES", path: "candidates" });
-    console.log("App.jsx useEffect()", candidates);
+    console.log("App.jsx useEffect() candidates", candidates);
   }, []);
 
   return (

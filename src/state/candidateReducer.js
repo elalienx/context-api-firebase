@@ -30,8 +30,10 @@ function editItem(state, action) {
   return clonedState;
 }
 
-function readItems(action) {
+async function readItems(action) {
   const { path } = action;
 
-  return getCollection(fireStoreInstance, path);
+  const collection = await getCollection(fireStoreInstance, path);
+  console.log("candidateReducer.js readItems() collection", collection);
+  return collection;
 }
