@@ -5,6 +5,9 @@ export default function Edit() {
   // Global state
   const { candidates, dispatch } = useCandidate();
 
+  console.log("Edit.jsx");
+  console.log(candidates);
+
   // Methods
   function onAddCandidate() {
     const newItem = {
