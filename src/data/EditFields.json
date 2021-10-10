@@ -1,0 +1,12 @@
+{
+  "name": {
+    "label": "Full name:",
+    "placeholder": "Eduardo Alvarez",
+    "type": "text"
+  },
+  "age": {
+    "label": "Age:",
+    "placeholder": "35",
+    "type": "number"
+  }
+}
