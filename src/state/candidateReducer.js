@@ -1,8 +1,8 @@
 export default function listReducer(state, action) {
   switch (action.type) {
-    case "addItem":
+    case "ADD_ITEM":
       return addItem(state, action);
-    case "editItem":
+    case "EDIT_ITEM":
       return editItem(state, action);
     default:
       throw new Error(`No action type found ${action.type}`);
