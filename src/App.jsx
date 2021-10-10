@@ -19,7 +19,10 @@ export default function App() {
   const checkStatus = useCallback(async () => {
     const result = await candidates;
 
-    if (result?.length > 0) setStatus(1);
+    console.log("App.jsx useCallback");
+    console.log(result);
+
+    if (result.length > 0) setStatus(1);
     else setStatus(2);
   }, [candidates]);
 
