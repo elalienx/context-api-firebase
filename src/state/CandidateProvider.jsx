@@ -5,38 +5,44 @@ import {
   useState,
   useCallback,
   useEffect,
+  useReducer,
 } from "react";
 
 // Project files
-import { fireStoreInstance } from "../scripts/firebase";
 import { getCollection } from "../scripts/fireStore";
+import candidateReducer from "./candidateReducer";
 
 // Properties
 const CandidateContext = createContext(null);
 
 export function CandidateProvider({ children }) {
   // Local state
-  const [candidates, setCandidates] = useState([]);
+  const [candidates, dispatch] = useReducer(candidateReducer, []);
   const [status, setStatus] = useState(0);
 
-  // Methods
-  const fetchData = useCallback(async () => {
-    const candidates = await getCollection(fireStoreInstance, "candidates");
+  // Properties
+  const PATH = "candidates";
 
-    if (candidates.length === 0) {
-      setStatus(1);
-    } else if (candidates.length > 0) {
-      setCandidates(candidates);
-      setStatus(2);
-    } else {
+  // Methods
+  // Refactor: Move to customHook to make easy to read
+  const fetchData = useCallback(async (path) => {
+    try {
+      const candidates = await getCollection(path);
+
+      if (candidates.length === 0) setStatus(1);
+      if (candidates.length > 0) {
+        dispatch({ type: "SET_CANDIDATES", payload: candidates });
+        setStatus(2);
+      }
+    } catch {
       setStatus(3);
     }
   }, []);
 
-  useEffect(() => fetchData(), [fetchData]);
+  useEffect(() => fetchData(PATH), [fetchData]);
 
   return (
-    <CandidateContext.Provider value={{ candidates, setCandidates, status }}>
+    <CandidateContext.Provider value={{ candidates, dispatch, status }}>
       {children}
     </CandidateContext.Provider>
   );
