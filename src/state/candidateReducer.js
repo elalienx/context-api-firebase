@@ -1,9 +1,13 @@
+import { getCollection } from "../scripts/fireStore";
+
 export default function listReducer(state, action) {
   switch (action.type) {
     case "ADD_ITEM":
       return addItem(state, action);
     case "EDIT_ITEM":
       return editItem(state, action);
+    case "READ_FILES":
+      return readItems(action);
     default:
       throw new Error(`No action type found ${action.type}`);
   }
@@ -23,4 +27,10 @@ function editItem(state, action) {
 
   clonedState[index] = editedItem;
   return clonedState;
+}
+
+function readItems(action) {
+  const { path } = action;
+
+  return getCollection()
 }

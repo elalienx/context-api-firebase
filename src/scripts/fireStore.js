@@ -6,7 +6,6 @@ import {
   doc,
   deleteDoc,
   updateDoc,
-  DocumentData,
 } from "firebase/firestore/lite";
 
 // Create doc with auto id
@@ -19,8 +18,8 @@ export async function createDoc(db, path, data) {
 // Read documents
 export async function getCollection(db, path) {
   const collectionReference = collection(db, path);
-  const snapshop = await getDocs(collectionReference);
-  const list = snapshop.docs.map((doc) => {
+  const snapshot = await getDocs(collectionReference);
+  const list = snapshot.docs.map((doc) => {
     return { id: doc.id, ...doc.data() };
   });
 

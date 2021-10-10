@@ -6,10 +6,15 @@ import Header from "./components/Header";
 import Home from "./pages/Home";
 import Edit from "./pages/Edit";
 import { useCandidate } from "./state/CandidateProvider";
+import { useEffect } from "react";
 
 export default function App() {
   // Global state
-  const { candidates } = useCandidate();
+  const { candidates, dispatch } = useCandidate();
+
+  useEffect(() => {
+    dispatch({ type: "READ_FILES", path: "candidates" });
+  }, []);
 
   return (
     <div className="App">
