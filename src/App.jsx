@@ -14,6 +14,7 @@ export default function App() {
 
   useEffect(() => {
     dispatch({ type: "READ_FILES", path: "candidates" });
+    console.log("App.jsx useEffect()", candidates);
   }, []);
 
   return (

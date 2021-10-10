@@ -1,5 +1,6 @@
 // NPM package
 import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore/lite";
 
 const firebaseConfiguration = {
   apiKey: "AIzaSyCgsmZUwC5hgd-qh5gLHO8u8qlP7fP6YLA",
@@ -11,5 +12,4 @@ const firebaseConfiguration = {
 };
 
 const firebaseInstance = initializeApp(firebaseConfiguration);
-
-export default firebaseInstance;
+export const fireStoreInstance = getFirestore(firebaseInstance);

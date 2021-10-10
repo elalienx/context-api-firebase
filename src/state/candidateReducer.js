@@ -1,4 +1,5 @@
 import { getCollection } from "../scripts/fireStore";
+import { fireStoreInstance } from "../scripts/firebase";
 
 export default function listReducer(state, action) {
   switch (action.type) {
@@ -32,5 +33,5 @@ function editItem(state, action) {
 function readItems(action) {
   const { path } = action;
 
-  return getCollection()
+  return getCollection(fireStoreInstance, path);
 }
