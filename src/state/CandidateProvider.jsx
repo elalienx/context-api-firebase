@@ -28,7 +28,6 @@ export function useCandidate() {
 
 async function loadData() {
   const collection = await getCollection(fireStoreInstance, "candidates");
-  console.log("CandidateProvider.jsx loadData() collection", collection);
 
   return collection;
 }
