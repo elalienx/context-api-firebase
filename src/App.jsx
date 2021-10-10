@@ -12,8 +12,8 @@ export default function App() {
       <BrowserRouter>
         <Header />
         <Switch>
-          <Route component={Home} exact to="/" />
-          <Route component={Edit} exact to="/edit" />
+          <Route component={Home} exact path="/" />
+          <Route component={Edit} path="/edit" />
         </Switch>
       </BrowserRouter>
     </div>
