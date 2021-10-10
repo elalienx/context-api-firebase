@@ -2,36 +2,24 @@
 import React, { useContext, useEffect, useReducer } from "react";
 
 // Project files
-import STORAGE_KEY from "../scripts/storageKey";
-import listReducer from "./listReducer";
+import reducer from "./candidateReducer";
 
 // Properties
-const ListContext = React.createContext(null);
+const CandidateContext = React.createContext(null);
 
-export function ListProvider(props) {
+export function ListProvider({ children }) {
   // Global state
-  const [list, dispatch] = useReducer(listReducer, loadList(STORAGE_KEY));
-
-  // Methods
-  useEffect(() => saveList(STORAGE_KEY, list), [list]);
+  const [candidates, dispatch] = useReducer(reducer, []);
 
   return (
-    <ListContext.Provider value={{ list, dispatch }}>
-      {props.children}
-    </ListContext.Provider>
+    <CandidateContext.Provider value={{ candidates, dispatch }}>
+      {children}
+    </CandidateContext.Provider>
   );
 }
 
-export function useList() {
-  const context = useContext(ListContext);
+export function useCandidate() {
+  const context = useContext(CandidateContext);
 
   return context;
-}
-
-function loadList(key) {
-  return JSON.parse(localStorage.getItem(key)) ?? [];
-}
-
-function saveList(key, list) {
-  localStorage.setItem(key, JSON.stringify(list));
 }
