@@ -11,10 +11,7 @@ const CandidateContext = React.createContext(null);
 
 export function CandidateProvider({ children }) {
   // Global state
-  const [candidates, dispatch] = useReducer(reducer, loadData);
-
-  // Methods
-  useEffect();
+  const [candidates, dispatch] = useReducer(reducer, [], loadData);
 
   return (
     <CandidateContext.Provider value={{ candidates, dispatch }}>
