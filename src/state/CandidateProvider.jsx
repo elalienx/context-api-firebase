@@ -13,6 +13,10 @@ export function CandidateProvider({ children }) {
   // Global state
   const [candidates, dispatch] = useReducer(reducer, []);
 
+  useEffect(() => {
+    dispatch({ type: "READ_FILES", path: "candidates" });
+  }, []);
+
   return (
     <CandidateContext.Provider value={{ candidates, dispatch }}>
       {children}
@@ -26,8 +30,8 @@ export function useCandidate() {
   return context;
 }
 
-async function loadData() {
-  const collection = await getCollection(fireStoreInstance, "candidates");
+async function loadData(path) {
+  const collection = await getCollection(fireStoreInstance, path);
 
   return collection;
 }

@@ -18,10 +18,10 @@ export default function App() {
     const result = await candidates;
 
     console.log("App.jsx useCallback");
-    console.log(result);
+    console.log(result); 
 
     if (result.length === 0) setStatus(1);
-    else if (result.length > 0) status(2);
+    else if (result.length > 0) setStatus(2);
     else setStatus(3);
   }, [candidates]);
 
