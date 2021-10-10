@@ -1,8 +1,14 @@
 // NPM packages
-import { collection, getDocs } from "firebase/firestore/lite";
+import { collection, addDoc, getDocs } from "firebase/firestore/lite";
 
 // Project files
 import { fireStoreInstance } from "../scripts/firebase";
+
+export async function createDoc(path, data) {
+  const collectionReference = collection(fireStoreInstance, path);
+
+  await addDoc(collectionReference, data);
+}
 
 export async function getCollection(path) {
   const collectionReference = collection(fireStoreInstance, path); // code that runs locally from the SDK
