@@ -7,7 +7,7 @@ import reducer from "./candidateReducer";
 // Properties
 const CandidateContext = React.createContext(null);
 
-export function ListProvider({ children }) {
+export function CandidateProvider({ children }) {
   // Global state
   const [candidates, dispatch] = useReducer(reducer, []);
 

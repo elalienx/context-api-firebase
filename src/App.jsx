@@ -9,7 +9,7 @@ import { useCandidate } from "./state/CandidateProvider";
 
 export default function App() {
   // Global state
-  const { candidates } = useList();
+  const { candidates } = useCandidate();
 
   return (
     <div className="App">
