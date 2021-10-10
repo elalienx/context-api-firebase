@@ -24,7 +24,6 @@ export function CandidateProvider({ children }) {
   const PATH = "candidates";
 
   // Methods
-  // Refactor: Move to customHook to make easy to read
   const fetchData = useCallback(async (path) => {
     try {
       const candidates = await getCollection(path);
