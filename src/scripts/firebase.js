@@ -2,13 +2,14 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore/lite";
 
+// Using the Project fe-firebase-setup credentials
 const firebaseConfiguration = {
-  apiKey: "AIzaSyCgsmZUwC5hgd-qh5gLHO8u8qlP7fP6YLA",
-  authDomain: "fe-firebase-setup-v9.firebaseapp.com",
-  projectId: "fe-firebase-setup-v9",
-  storageBucket: "fe-firebase-setup-v9.appspot.com",
-  messagingSenderId: "429743436351",
-  appId: "1:429743436351:web:df2f88a4b113f7c7567e8a",
+  apiKey: "AIzaSyCg5AgfTsO8rtIQ5QyQ66RbuioeG0dcvuQ",
+  authDomain: "fe-firebase-setup.firebaseapp.com",
+  projectId: "fe-firebase-setup",
+  storageBucket: "fe-firebase-setup.appspot.com",
+  messagingSenderId: "466939589225",
+  appId: "1:466939589225:web:02ac6c3e8770e9a000a8f8",
 };
 
 const firebaseInstance = initializeApp(firebaseConfiguration);
