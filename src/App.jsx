@@ -1,6 +1,4 @@
 // NPM packages
-import { BrowserRouter, Switch, Route } from "react-router-dom";
-
 // Project files
 import Header from "./components/Header";
 import Home from "./pages/Home";
@@ -13,7 +11,7 @@ export default function App() {
   const { candidates } = useCandidate();
 
   // Local state
-  const [status, setStatus] = useState(0); // 0 loading, 1 loaded, 2 error
+  const [status, setStatus] = useState(0); // 0 loading, 1 loaded but empty, 2 loaded with data, 3 error
 
   // Methods
   const checkStatus = useCallback(async () => {
@@ -22,28 +20,19 @@ export default function App() {
     console.log("App.jsx useCallback");
     console.log(result);
 
-    if (result.length > 0) setStatus(1);
-    else setStatus(2);
+    if (result.length === 0) setStatus(1);
+    else if (result.length > 0) status(2);
+    else setStatus(3);
   }, [candidates]);
 
   useEffect(() => checkStatus(), [checkStatus]);
 
-  // Components
-  const Browser = (
-    <BrowserRouter>
-      <Header />
-      <Switch>
-        <Route component={Home} exact path="/" />
-        <Route component={Edit} path="/edit" />
-      </Switch>
-    </BrowserRouter>
-  );
-
   return (
     <div className="App">
       {status === 0 && <p>Loading ⏱</p>}
-      {status === 1 && Browser}
-      {status === 2 && <p>Error 🚨</p>}
+      {status === 1 && <p>There is not candidates.</p>}
+      {status === 2 && <p>Total candidates @{candidates.length}@.</p>}
+      {status === 3 && <p>Error 🚨</p>}
     </div>
   );
 }
