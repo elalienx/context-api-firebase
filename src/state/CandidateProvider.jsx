@@ -29,9 +29,3 @@ export function useCandidate() {
 
   return context;
 }
-
-async function loadData(path) {
-  const collection = await getCollection(fireStoreInstance, path);
-
-  return collection;
-}

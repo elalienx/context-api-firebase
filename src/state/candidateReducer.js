@@ -34,6 +34,7 @@ async function readItems(action) {
   const { path } = action;
 
   const collection = await getCollection(fireStoreInstance, path);
-  console.log("candidateReducer.js readItems() collection", collection);
+  console.log("readItems", collection);
+
   return collection;
 }
