@@ -28,8 +28,6 @@ export function useCandidate() {
 
 async function loadData() {
   const collection = await getCollection(fireStoreInstance, "candidates");
-  console.log("CandidateProvider.jsx collection");
-  console.log(collection); // this may be a promise that needs to destructured
 
   return collection;
 }
