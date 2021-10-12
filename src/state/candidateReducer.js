@@ -1,24 +1,33 @@
 export default function candidateReducer(state, action) {
   switch (action.type) {
-    case "ADD_CANDIDATE":
-      return addItem(state, action);
+    case "CREATE_PROFILE":
+      return createProfile(state, action);
+    case "UPDATE_PROFILE":
+      return updateProfile(state, action);
     case "SET_CANDIDATES":
-      return setCandidates(state, action);
+      return setCandidates(action);
     default:
       throw new Error(`No action type found ${action.type}`);
   }
 }
 
-function addItem(state, action) {
+function createProfile(state, action) {
   const { payload } = action;
 
-  if (payload !== null) return [...state, payload];
-  return state;
+  return [...state, payload];
 }
 
-function setCandidates(state, action) {
+function updateProfile(state, action) {
+  const { payload } = action;
+  const newState = [...state];
+  const index = newState.findIndex((item) => item.id == payload.id);
+
+  newState[index] = { ...payload };
+  return newState;
+}
+
+function setCandidates(action) {
   const { payload } = action;
 
-  if (payload !== null) return payload;
-  return state;
+  return payload;
 }

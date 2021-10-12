@@ -29,26 +29,23 @@ export default function Edit() {
     else return existingProfile;
   }
 
-  async function onAddProfile() {
-    const newProfile = {
-      name: name,
-      city: city,
-      portfolioURL: portfolioURL,
-    };
-    const newId = await createDoc("candidates", newProfile);
-
-    newProfile.id = newId;
-    dispatch({ type: "ADD_CANDIDATE", payload: newProfile });
+  function onSave() {
+    id === "new-profile" ? onCreateProfile() : onUpdateProfile();
     history.push("/");
   }
 
-  // Add a coordinator function to check if is a new profile or existing profile
-  function onSave() {
-    if (id === "new-profile") {
-      onAddProfile();
-    } else {
-      onUpdateProfile();
-    }
+  async function onCreateProfile() {
+    const newProfile = { name, city, portfolioURL };
+    const newId = await createDoc("candidates", newProfile);
+
+    newProfile.id = newId;
+    dispatch({ type: "CREATE_PROFILE", payload: newProfile });
+  }
+
+  async function onUpdateProfile() {
+    const editedProfile = { id, name, city, portfolioURL };
+
+    dispatch({ type: "UPDATE_PROFILE", payload: editedProfile });
   }
 
   return (
