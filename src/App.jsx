@@ -13,12 +13,9 @@ export default function App() {
   // Component
   const Browser = (
     <BrowserRouter>
-      <nav>
-        <Link to="/">Home</Link> | <Link to="/edit">Edit</Link>
-      </nav>
       <Switch>
         <Route component={Home} exact path="/" />
-        <Route component={Edit} path="/edit" />
+        <Route component={Edit} path="/edit/:id" />
       </Switch>
     </BrowserRouter>
   );

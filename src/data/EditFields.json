@@ -6,7 +6,7 @@
   },
   "city": {
     "label": "City",
-    "placeholder": "Eduardo Alvarez",
+    "placeholder": "Stockholm",
     "type": "text"
   },
   "portfolioURL": {

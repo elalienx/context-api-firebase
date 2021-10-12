@@ -11,15 +11,16 @@ export default function Home() {
 
   // Components
   const CandidateItems = candidates.map((item) => (
-    <Link to="/edit/:id">
-      <ItemCandidate key={item.id} item={item} />
-    </Link>
+    <ItemCandidate key={item.id} item={item} to={`edit/${item.id}`} />
   ));
 
   return (
     <div>
       <h1>Home page</h1>
       <ol>{CandidateItems}</ol>
+      <Link className="button" to="edit/new-profile">
+        Add new profile
+      </Link>
     </div>
   );
 }

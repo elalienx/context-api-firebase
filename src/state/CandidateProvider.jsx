@@ -27,7 +27,6 @@ export function CandidateProvider({ children }) {
   const fetchData = useCallback(async (path) => {
     try {
       const candidates = await getCollection(path);
-      console.log("candidates", candidates);
 
       dispatch({ type: "SET_CANDIDATES", payload: candidates });
       setStatus(1);
