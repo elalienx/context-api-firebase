@@ -1,17 +1,11 @@
-/**
-  To refactor:
-  - Put the input fields into a separate component
-  - Extract methods that do not need the state into Edit.js
-*/
-
 // NPM packages
 import { useState } from "react";
 import { useParams, useHistory, Link } from "react-router-dom";
 import PersonalInformation from "../components/PersonalInformation";
 
 // Project files
-import { createDocument, updateDocument } from "../scripts/fireStore";
 import { useCandidates } from "../state/CandidatesProvider";
+import { createDocument, updateDocument } from "../scripts/fireStore";
 
 export default function Edit() {
   // Global state

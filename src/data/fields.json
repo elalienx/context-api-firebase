@@ -1,20 +1,20 @@
-{
-  "name": {
+[
+  {
     "key": "name",
     "label": "Full name",
     "placeholder": "Eduardo Alvarez",
     "type": "text"
   },
-  "city": {
+  {
     "key": "city",
     "label": "City",
     "placeholder": "Stockholm",
     "type": "text"
   },
-  "portfolioURL": {
+  {
     "key": "portfolioURL",
     "label": "Portfolio link",
     "placeholder": "www.google.com",
     "type": "text"
   }
-}
+]
