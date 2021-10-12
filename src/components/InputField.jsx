@@ -1,15 +1,20 @@
-export default function InputField({ state, options }) {
-  const [getter, setter] = state;
-  const { label = "New field:", placeholder = "", type = "string" } = options;
+import { useRef } from "react";
+
+export default function InputField({ onChange, options, state }) {
+  const { key, label, placeholder, type } = options;
+
+  // Properties
+  const inputReference = useRef(null);
 
   return (
     <label>
       {label}
       <input
-        type={type}
+        onChange={() => onChange(key, inputReference.current.value)}
         placeholder={placeholder}
-        value={getter}
-        onChange={(event) => setter(event.target.value)}
+        ref={inputReference}
+        type={type}
+        value={state}
       />
     </label>
   );

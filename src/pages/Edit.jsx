@@ -7,10 +7,9 @@
 // NPM packages
 import { useState } from "react";
 import { useParams, useHistory, Link } from "react-router-dom";
+import PersonalInformation from "../components/PersonalInformation";
 
 // Project files
-import InputField from "../components/InputField";
-import EditFields from "../data/EditFields.json";
 import { createDocument, updateDocument } from "../scripts/fireStore";
 import { useCandidates } from "../state/CandidatesProvider";
 
@@ -22,24 +21,24 @@ export default function Edit() {
 
   // Local state
   const [profile, setProfile] = useState(onLoad(candidates, id));
-  const [name, setName] = useState(profile.name);
-  const [city, setCity] = useState(profile.city);
-  const [portfolioURL, setPortfolioURL] = useState(profile.portfolioURL);
 
   // Methods
   function onLoad(candidates, id) {
     const existingProfile = candidates.find((item) => item.id === id);
+    const newProfile = { name: "", city: "", portfolioURL: "" };
 
-    if (existingProfile === undefined)
-      return { name: "", city: "", portfolioURL: "" };
-    else return existingProfile;
+    return existingProfile === undefined ? newProfile : existingProfile;
   }
 
   function onSave() {
-    const profile = { id, name, city, portfolioURL };
-
     id === "new-profile" ? onCreateProfile(profile) : onUpdateProfile(profile);
     history.push("/");
+  }
+
+  function onChange(key, value) {
+    const field = { [key]: value };
+
+    setProfile({ ...profile, ...field });
   }
 
   async function onCreateProfile(profile) {
@@ -55,14 +54,7 @@ export default function Edit() {
   return (
     <div>
       <h1>Edit page</h1>
-      <section>
-        <InputField state={[name, setName]} options={EditFields.name} />
-        <InputField state={[city, setCity]} options={EditFields.city} />
-        <InputField
-          state={[portfolioURL, setPortfolioURL]}
-          options={EditFields.portfolioURL}
-        />
-      </section>
+      <PersonalInformation profile={profile} onChange={onChange} />
       <footer>
         <Link to="/">Go back</Link>
         {" - "}
