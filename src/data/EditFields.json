@@ -1,12 +1,17 @@
 {
   "name": {
-    "label": "Full name:",
+    "label": "Full name",
     "placeholder": "Eduardo Alvarez",
     "type": "text"
   },
-  "age": {
-    "label": "Age:",
-    "placeholder": "35",
-    "type": "number"
+  "city": {
+    "label": "City",
+    "placeholder": "Eduardo Alvarez",
+    "type": "text"
+  },
+  "portfolioURL": {
+    "label": "Portfolio link",
+    "placeholder": "www.google.com",
+    "type": "text"
   }
 }

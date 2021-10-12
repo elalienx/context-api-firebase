@@ -1,8 +1,7 @@
 // NPM packages
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 
 // Project files
-import Header from "./components/Header";
 import Home from "./pages/Home";
 import Edit from "./pages/Edit";
 import { useCandidates } from "./state/CandidateProvider";
@@ -14,7 +13,9 @@ export default function App() {
   // Component
   const Browser = (
     <BrowserRouter>
-      <Header />
+      <nav>
+        <Link to="/">Home</Link> | <Link to="/edit">Edit</Link>
+      </nav>
       <Switch>
         <Route component={Home} exact path="/" />
         <Route component={Edit} path="/edit" />

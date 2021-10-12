@@ -13,7 +13,8 @@ export default function Edit() {
 
   // Local state
   const [name, setName] = useState("");
-  const [age, setAge] = useState(0);
+  const [city, setCity] = useState("");
+  const [portfolioURL, setPortfolioURL] = useState("");
 
   // Methods
   async function onAddCandidate() {
@@ -35,7 +36,11 @@ export default function Edit() {
     <div>
       <h1>Edit page</h1>
       <InputField state={[name, setName]} options={EditFields.name} />
-      <InputField state={[age, setAge]} options={EditFields.age} />
+      <InputField state={[city, setCity]} options={EditFields.city} />
+      <InputField
+        state={[portfolioURL, setPortfolioURL]}
+        options={EditFields.portfolioURL}
+      />
       <button onClick={onAddCandidate}>Add candidate</button>
     </div>
   );
