@@ -1,11 +1,12 @@
 // NPM packages
+import { updateDoc } from "firebase/firestore/lite";
 import { useState } from "react";
 import { useParams, useHistory, Link } from "react-router-dom";
 
 // Project files
 import InputField from "../components/InputField";
 import EditFields from "../data/EditFields.json";
-import { createDoc } from "../scripts/fireStore";
+import { createDocument, updateDocument } from "../scripts/fireStore";
 import { useCandidates } from "../state/CandidateProvider";
 
 export default function Edit() {
@@ -30,22 +31,20 @@ export default function Edit() {
   }
 
   function onSave() {
-    id === "new-profile" ? onCreateProfile() : onUpdateProfile();
+    const profile = { id, name, city, portfolioURL };
+
+    id === "new-profile" ? onCreateProfile(profile) : onUpdateProfile(profile);
     history.push("/");
   }
 
-  async function onCreateProfile() {
-    const newProfile = { name, city, portfolioURL };
-    const newId = await createDoc("candidates", newProfile);
-
-    newProfile.id = newId;
-    dispatch({ type: "CREATE_PROFILE", payload: newProfile });
+  async function onCreateProfile(profile) {
+    profile.id = await createDocument("candidates", newProfile);
+    dispatch({ type: "CREATE_PROFILE", payload: profile });
   }
 
-  async function onUpdateProfile() {
-    const editedProfile = { id, name, city, portfolioURL };
-
-    dispatch({ type: "UPDATE_PROFILE", payload: editedProfile });
+  async function onUpdateProfile(profile) {
+    await updateDocument("candidates", profile);
+    dispatch({ type: "UPDATE_PROFILE", payload: profile });
   }
 
   return (
