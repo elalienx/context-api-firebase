@@ -1,5 +1,10 @@
+/**
+  To refactor:
+  - Put the input fields into a separate component
+  - Extract methods that do not need the state into Edit.js
+*/
+
 // NPM packages
-import { updateDoc } from "firebase/firestore/lite";
 import { useState } from "react";
 import { useParams, useHistory, Link } from "react-router-dom";
 
@@ -7,7 +12,7 @@ import { useParams, useHistory, Link } from "react-router-dom";
 import InputField from "../components/InputField";
 import EditFields from "../data/EditFields.json";
 import { createDocument, updateDocument } from "../scripts/fireStore";
-import { useCandidates } from "../state/CandidateProvider";
+import { useCandidates } from "../state/CandidatesProvider";
 
 export default function Edit() {
   // Global state
@@ -16,13 +21,13 @@ export default function Edit() {
   const history = useHistory();
 
   // Local state
-  const [profile, setProfile] = useState(getProfile(candidates, id));
+  const [profile, setProfile] = useState(onLoad(candidates, id));
   const [name, setName] = useState(profile.name);
   const [city, setCity] = useState(profile.city);
   const [portfolioURL, setPortfolioURL] = useState(profile.portfolioURL);
 
   // Methods
-  function getProfile(candidates, id) {
+  function onLoad(candidates, id) {
     const existingProfile = candidates.find((item) => item.id === id);
 
     if (existingProfile === undefined)
@@ -50,15 +55,19 @@ export default function Edit() {
   return (
     <div>
       <h1>Edit page</h1>
-      <InputField state={[name, setName]} options={EditFields.name} />
-      <InputField state={[city, setCity]} options={EditFields.city} />
-      <InputField
-        state={[portfolioURL, setPortfolioURL]}
-        options={EditFields.portfolioURL}
-      />
-      <Link to="/">Go back</Link>
-      {" - "}
-      <button onClick={onSave}>Save profile</button>
+      <section>
+        <InputField state={[name, setName]} options={EditFields.name} />
+        <InputField state={[city, setCity]} options={EditFields.city} />
+        <InputField
+          state={[portfolioURL, setPortfolioURL]}
+          options={EditFields.portfolioURL}
+        />
+      </section>
+      <footer>
+        <Link to="/">Go back</Link>
+        {" - "}
+        <button onClick={onSave}>Save profile</button>
+      </footer>
     </div>
   );
 }

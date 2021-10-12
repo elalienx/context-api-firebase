@@ -1,4 +1,4 @@
-export default function candidateReducer(state, action) {
+export default function candidatesReducer(state, action) {
   switch (action.type) {
     case "CREATE_PROFILE":
       return createProfile(state, action);

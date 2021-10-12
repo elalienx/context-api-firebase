@@ -10,14 +10,14 @@ import {
 
 // Project files
 import { getCollection } from "../scripts/fireStore";
-import candidateReducer from "./candidateReducer";
+import candidatesReducer from "./candidatesReducer";
 
 // Properties
-const CandidateContext = createContext(null);
+const CandidatesContext = createContext(null);
 
-export function CandidateProvider({ children }) {
+export function CandidatesProvider({ children }) {
   // Local state
-  const [candidates, dispatch] = useReducer(candidateReducer, []);
+  const [candidates, dispatch] = useReducer(candidatesReducer, []);
   const [status, setStatus] = useState(0); // 0 loading, 1 loaded, 2 error
 
   // Properties
@@ -38,14 +38,14 @@ export function CandidateProvider({ children }) {
   useEffect(() => fetchData(PATH), [fetchData]);
 
   return (
-    <CandidateContext.Provider value={{ candidates, dispatch, status }}>
+    <CandidatesContext.Provider value={{ candidates, dispatch, status }}>
       {children}
-    </CandidateContext.Provider>
+    </CandidatesContext.Provider>
   );
 }
 
 export function useCandidates() {
-  const context = useContext(CandidateContext);
+  const context = useContext(CandidatesContext);
 
   return context;
 }

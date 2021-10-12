@@ -2,7 +2,7 @@
 import { Link } from "react-router-dom";
 
 // Project files
-import { useCandidates } from "../state/CandidateProvider";
+import { useCandidates } from "../state/CandidatesProvider";
 import ItemCandidate from "../components/ItemCandidate";
 
 export default function Home() {
@@ -19,7 +19,7 @@ export default function Home() {
       <h1>Home page</h1>
       <ol>{CandidateItems}</ol>
       <Link className="button" to="edit/new-profile">
-        Add new profile
+        Add profile
       </Link>
     </div>
   );

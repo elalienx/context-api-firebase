@@ -1,13 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { CandidateProvider } from "./state/CandidateProvider";
+import { CandidatesProvider } from "./state/CandidatesProvider";
 import App from "./App";
 
 ReactDOM.render(
   <React.StrictMode>
-    <CandidateProvider>
+    <CandidatesProvider>
       <App />
-    </CandidateProvider>
+    </CandidatesProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

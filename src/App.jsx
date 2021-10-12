@@ -1,10 +1,10 @@
 // NPM packages
-import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 // Project files
 import Home from "./pages/Home";
 import Edit from "./pages/Edit";
-import { useCandidates } from "./state/CandidateProvider";
+import { useCandidates } from "./state/CandidatesProvider";
 
 export default function App() {
   // Global state
