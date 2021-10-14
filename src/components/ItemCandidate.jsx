@@ -2,7 +2,7 @@
 import { Link } from "react-router-dom";
 
 export default function ItemCandidate({ item, to }) {
-  const { city, name, portoflioURL } = item;
+  const { city, name, portfolioURL } = item;
 
   return (
     <li>
@@ -10,7 +10,7 @@ export default function ItemCandidate({ item, to }) {
         Edit profile
       </Link>
       {" of "}
-      <a href={portoflioURL} target="_blank" rel="noreferrer">
+      <a href={portfolioURL} target="_blank" rel="noreferrer">
         {name} from {city}
       </a>
     </li>
