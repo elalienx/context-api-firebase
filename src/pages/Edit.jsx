@@ -14,10 +14,10 @@ export default function Edit() {
   const history = useHistory();
 
   // Local state
-  const [profile, setProfile] = useState(onLoad(candidates, id));
+  const [profile, setProfile] = useState(findProfile(candidates, id));
 
   // Methods
-  function onLoad(candidates, id) {
+  function findProfile(candidates, id) {
     const existingProfile = candidates.find((item) => item.id === id);
     const newProfile = { name: "", city: "", portfolioURL: "" };
 
