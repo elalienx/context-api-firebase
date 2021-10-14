@@ -36,7 +36,7 @@ export default function Edit() {
   }
 
   async function onCreateProfile(profile) {
-    profile.id = await createDocument("candidates", newProfile);
+    profile.id = await createDocument("candidates", profile);
     dispatch({ type: "CREATE_PROFILE", payload: profile });
   }
 
@@ -49,11 +49,9 @@ export default function Edit() {
     <div>
       <h1>Edit page</h1>
       <PersonalInformation profile={profile} onChange={onChange} />
-      <footer>
-        <Link to="/">Go back</Link>
-        {" - "}
-        <button onClick={onSave}>Save profile</button>
-      </footer>
+      <Link to="/">Go back</Link>
+      {" - "}
+      <button onClick={onSave}>Save profile</button>
     </div>
   );
 }
