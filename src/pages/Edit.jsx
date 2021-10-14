@@ -24,7 +24,7 @@ export default function Edit() {
     return existingProfile === undefined ? newProfile : existingProfile;
   }
 
-  function onSave() {
+  function onSave(profile) {
     id === "new-profile" ? onCreateProfile(profile) : onUpdateProfile(profile);
     history.push("/");
   }
@@ -51,7 +51,7 @@ export default function Edit() {
       <PersonalInformation profile={profile} onChange={onChange} />
       <Link to="/">Go back</Link>
       {" - "}
-      <button onClick={onSave}>Save profile</button>
+      <button onClick={() => onSave(profile)}>Save profile</button>
     </div>
   );
 }
